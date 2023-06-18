@@ -1,6 +1,17 @@
 public class Main {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        storage();
+        printAllEmployees(Employee);
+        summSalary();
+        maxSalary();
+        minSalary();
+        printFIO();
+
+
+
+    }
+    public static void storage () {
         System.out.println();
 
         Employee[] employees = new Employee[10];
@@ -24,43 +35,58 @@ public class Main {
         employees[8] = evgeny;
         Employee roman = new Employee("Косицын Роман Дмитриевич", 67_000, 3);
         employees[9] = roman;
+    }
 
+
+    public static void printAllEmployees(Employee[] employees) {
 // Вывод всех данных работников
         for (int i = 0; i < employees.length; i++) {
             System.out.println(employees[i]);
         }
+    }
+
+    public static void summSalary(Employee[] employees) {
 // Расчет общей суммы ЗП и средней ЗП
         int sumSalary = 0;
-        int mediumSalary = 0;
+        double mediumSalary = 0;
         for (int i = 0; i < employees.length; i++) {
             sumSalary += employees[i].getSalary();
         }
         mediumSalary = sumSalary / employees.length;
-
-// Расчет минимальной и максимальной ЗП
-        int maxSalary = employees[0].getSalary();
-        int minSalary = employees[0].getSalary();
-        for (int i = 0; i < employees.length; i++) {
-            if (minSalary > employees[i].getSalary()) {
-                minSalary = employees[i].getSalary();
-            }
-            if (maxSalary < employees[i].getSalary()) {
-                maxSalary = employees[i].getSalary();
-            }
-        }
-
-        System.out.println();
         System.out.println("Общая сумма затрат на ЗП = " + sumSalary);
         System.out.println("Средняя ЗП всех работников = " + mediumSalary);
-        System.out.println("Минимальная ЗП = " + minSalary);
-        System.out.println("Максимальная ЗП = " + maxSalary);
-        System.out.println();
 
-//    Вывод ФИО сотрудников
+
+    }
+
+    public static Employee maxSalary(Employee[] employees) {
+        // Расчет  максимальной ЗП
+        Employee maxSalary = employees[0];
         for (int i = 0; i < employees.length; i++) {
-            System.out.println(employees[i].getId() + ". "+ employees[i].getFullName());
+            Employee employee = employees[i];
+            if (maxSalary.getSalary() < employees[i].getSalary()) {
+                maxSalary = employee;
+            }
         }
+        return maxSalary;
+    }
+    public static Employee minSalary(Employee[] employees) {
+        // Расчет минимальной ЗП
+        Employee minSalary = employees[0];
+        for (int i = 0; i < employees.length; i++) {
+            Employee employee = employees[i];
+             if (minSalary.getSalary() > employees[i].getSalary()) {
+                 minSalary = employee;        }
+        }
+        return minSalary;
     }
 
 
+    public static void printFIO(Employee[] employees) {
+//    Вывод ФИО сотрудников
+        for (int i = 0; i < employees.length; i++) {
+            System.out.println(employees[i].getId() + ". " + employees[i].getFullName());
+        }
+    }
 }
+
