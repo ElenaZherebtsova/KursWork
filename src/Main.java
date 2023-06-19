@@ -1,17 +1,23 @@
 public class Main {
 
     public static void main(String[] args) {
-        storage();
-        printAllEmployees(Employee);
-        summSalary();
-        maxSalary();
-        minSalary();
-        printFIO();
+        Employee[] employees = storage();
+        printAllEmployees(employees);
 
+        System.out.println();
+        summSalary(employees);
+
+        System.out.println();
+        maxSalary(employees);
+        minSalary(employees);
+
+        System.out.println();
+        printFIO(employees);
 
 
     }
-    public static void storage () {
+
+    public static Employee[] storage() {
         System.out.println();
 
         Employee[] employees = new Employee[10];
@@ -35,6 +41,7 @@ public class Main {
         employees[8] = evgeny;
         Employee roman = new Employee("Косицын Роман Дмитриевич", 67_000, 3);
         employees[9] = roman;
+        return employees;
     }
 
 
@@ -68,16 +75,22 @@ public class Main {
                 maxSalary = employee;
             }
         }
+        System.out.println(maxSalary.getFullName() + " - работник с максимальной зарплатой.");
+
         return maxSalary;
     }
+
     public static Employee minSalary(Employee[] employees) {
         // Расчет минимальной ЗП
         Employee minSalary = employees[0];
         for (int i = 0; i < employees.length; i++) {
             Employee employee = employees[i];
-             if (minSalary.getSalary() > employees[i].getSalary()) {
-                 minSalary = employee;        }
+            if (minSalary.getSalary() > employees[i].getSalary()) {
+                minSalary = employee;
+            }
         }
+        System.out.println(minSalary.getFullName() + " - работник с минимальной зарплатой.");
+
         return minSalary;
     }
 
